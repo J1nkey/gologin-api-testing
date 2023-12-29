@@ -1,5 +1,5 @@
 using GoLoginTools.Services;
-using GoLoginTools.Services.Dtos.GetProfilesPaging;
+using GoLoginTools.Services.GoLogin.Dtos.GetProfilesPaging;
 
 namespace GoLoginTools.Test
 {
@@ -20,7 +20,5 @@ namespace GoLoginTools.Test
 			GoLoginAPI api = new GoLoginAPI(_accessToken);
 			var result = api.GetProfilesPagingAsync(new GetProfilesPagingRequest() { Limit = 10, Page = 1 }).GetAwaiter().GetResult();
 		}
-
-
 	}
 }

@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoLoginTools", "GoLoginTools\GoLoginTools.csproj", "{9F665760-95CE-43AE-A9B7-CB70F0E95313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoLoginTools.Services", "GoLoginTools.Services\GoLoginTools.Services.csproj", "{7D6A266C-70DE-4A2A-9E37-CC252F388AE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoLoginTools.Services", "GoLoginTools.Services\GoLoginTools.Services.csproj", "{7D6A266C-70DE-4A2A-9E37-CC252F388AE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoLoginTools.POCO", "GoLoginTools.POCO\GoLoginTools.POCO.csproj", "{D1DF8657-F11E-454B-B729-1987A49A6812}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoLoginTools.POCO", "GoLoginTools.POCO\GoLoginTools.POCO.csproj", "{D1DF8657-F11E-454B-B729-1987A49A6812}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoLoginTools.Test", "GoLoginTools.Test\GoLoginTools.Test.csproj", "{20281B5E-E892-4CDC-BC83-A26855E3E3B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoLoginTools.Test", "GoLoginTools.Test\GoLoginTools.Test.csproj", "{20281B5E-E892-4CDC-BC83-A26855E3E3B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoLoginTools.App", "GoLoginTools.App\GoLoginTools.App.csproj", "{AC94ECAB-B1CF-48AD-B520-FBC75BC4391D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoLoginTools.Utils", "GoLoginTools.Utils\GoLoginTools.Utils.csproj", "{8AF8D26B-431F-4323-9256-9782D6ECC4EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9F665760-95CE-43AE-A9B7-CB70F0E95313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F665760-95CE-43AE-A9B7-CB70F0E95313}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F665760-95CE-43AE-A9B7-CB70F0E95313}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F665760-95CE-43AE-A9B7-CB70F0E95313}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7D6A266C-70DE-4A2A-9E37-CC252F388AE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7D6A266C-70DE-4A2A-9E37-CC252F388AE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D6A266C-70DE-4A2A-9E37-CC252F388AE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +31,14 @@ Global
 		{20281B5E-E892-4CDC-BC83-A26855E3E3B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20281B5E-E892-4CDC-BC83-A26855E3E3B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20281B5E-E892-4CDC-BC83-A26855E3E3B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC94ECAB-B1CF-48AD-B520-FBC75BC4391D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC94ECAB-B1CF-48AD-B520-FBC75BC4391D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC94ECAB-B1CF-48AD-B520-FBC75BC4391D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC94ECAB-B1CF-48AD-B520-FBC75BC4391D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AF8D26B-431F-4323-9256-9782D6ECC4EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF8D26B-431F-4323-9256-9782D6ECC4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF8D26B-431F-4323-9256-9782D6ECC4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF8D26B-431F-4323-9256-9782D6ECC4EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

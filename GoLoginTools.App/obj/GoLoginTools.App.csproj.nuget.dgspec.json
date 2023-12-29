@@ -1,9 +1,81 @@
 {
   "format": 1,
   "restore": {
-    "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Test\\GoLoginTools.Test.csproj": {}
+    "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.App\\GoLoginTools.App.csproj": {}
   },
   "projects": {
+    "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.App\\GoLoginTools.App.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.App\\GoLoginTools.App.csproj",
+        "projectName": "GoLoginTools.App",
+        "projectPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.App\\GoLoginTools.App.csproj",
+        "packagesPath": "C:\\Users\\P14S\\.nuget\\packages\\",
+        "outputPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.App\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\P14S\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {
+              "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj": {
+                "projectPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj"
+              },
+              "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Services\\GoLoginTools.Services.csproj": {
+                "projectPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Services\\GoLoginTools.Services.csproj"
+              },
+              "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Utils\\GoLoginTools.Utils.csproj": {
+                "projectPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Utils\\GoLoginTools.Utils.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -144,14 +216,14 @@
         }
       }
     },
-    "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Test\\GoLoginTools.Test.csproj": {
+    "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Utils\\GoLoginTools.Utils.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Test\\GoLoginTools.Test.csproj",
-        "projectName": "GoLoginTools.Test",
-        "projectPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Test\\GoLoginTools.Test.csproj",
+        "projectUniqueName": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Utils\\GoLoginTools.Utils.csproj",
+        "projectName": "GoLoginTools.Utils",
+        "projectPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Utils\\GoLoginTools.Utils.csproj",
         "packagesPath": "C:\\Users\\P14S\\.nuget\\packages\\",
-        "outputPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Test\\obj\\",
+        "outputPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Utils\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -171,14 +243,7 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {
-              "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj": {
-                "projectPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj"
-              },
-              "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Services\\GoLoginTools.Services.csproj": {
-                "projectPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Services\\GoLoginTools.Services.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -190,24 +255,6 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "MSTest.TestAdapter": {
-              "target": "Package",
-              "version": "[2.2.10, )"
-            },
-            "MSTest.TestFramework": {
-              "target": "Package",
-              "version": "[2.2.10, )"
-            },
-            "Microsoft.NET.Test.Sdk": {
-              "target": "Package",
-              "version": "[17.5.0, )"
-            },
-            "coverlet.collector": {
-              "target": "Package",
-              "version": "[3.2.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
