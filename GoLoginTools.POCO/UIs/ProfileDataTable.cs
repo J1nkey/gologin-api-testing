@@ -15,6 +15,5 @@ namespace GoLoginTools.POCO.UIs
         public string ProxyHost { get; set; }
         public string ProxyPort { get; set; }
         public bool WebRTCEnable { get; set; }
-        public int MyProperty { get; set; }
     }
 }

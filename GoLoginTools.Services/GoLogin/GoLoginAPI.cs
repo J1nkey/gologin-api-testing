@@ -87,8 +87,6 @@ namespace GoLoginTools.Services
                 response = JsonConvert.DeserializeObject<SetProxyToProfileResponse>(httpContent);
 				return response;
 			}
-
-            return null;
 		}
         public async Task<DeleteProfileResponse> DeleteProfileAsync(DeleteProfileRequest request)
         {

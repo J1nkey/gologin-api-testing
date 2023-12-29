@@ -30,11 +30,11 @@
 		{
 			groupBox1 = new GroupBox();
 			btnCreateProfile = new Button();
-			dataGridView1 = new DataGridView();
+			dgvProfiles = new DataGridView();
 			tbGlToken = new TextBox();
 			label1 = new Label();
 			groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+			((System.ComponentModel.ISupportInitialize)dgvProfiles).BeginInit();
 			SuspendLayout();
 			// 
 			// groupBox1
@@ -57,15 +57,15 @@
 			btnCreateProfile.UseVisualStyleBackColor = true;
 			btnCreateProfile.Click += btnCreateProfile_Click;
 			// 
-			// dataGridView1
+			// dgvProfiles
 			// 
-			dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dataGridView1.Location = new Point(12, 138);
-			dataGridView1.Name = "dataGridView1";
-			dataGridView1.RowHeadersWidth = 51;
-			dataGridView1.RowTemplate.Height = 29;
-			dataGridView1.Size = new Size(1038, 300);
-			dataGridView1.TabIndex = 1;
+			dgvProfiles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			dgvProfiles.Location = new Point(12, 138);
+			dgvProfiles.Name = "dgvProfiles";
+			dgvProfiles.RowHeadersWidth = 51;
+			dgvProfiles.RowTemplate.Height = 29;
+			dgvProfiles.Size = new Size(1038, 300);
+			dgvProfiles.TabIndex = 1;
 			// 
 			// tbGlToken
 			// 
@@ -91,12 +91,12 @@
 			ClientSize = new Size(1062, 450);
 			Controls.Add(label1);
 			Controls.Add(tbGlToken);
-			Controls.Add(dataGridView1);
+			Controls.Add(dgvProfiles);
 			Controls.Add(groupBox1);
 			Name = "FrmMain";
 			Text = "FrmMain";
 			groupBox1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+			((System.ComponentModel.ISupportInitialize)dgvProfiles).EndInit();
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -105,7 +105,7 @@
 
 		private GroupBox groupBox1;
 		private Button btnCreateProfile;
-		private DataGridView dataGridView1;
+		private DataGridView dgvProfiles;
 		private TextBox tbGlToken;
 		private Label label1;
 	}
