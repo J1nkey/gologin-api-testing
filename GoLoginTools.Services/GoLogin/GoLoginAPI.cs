@@ -3,8 +3,11 @@ using System.Text;
 using GoLoginTools.POCO;
 using GoLoginTools.Services.GoLogin.Dtos.CreateNewProfile;
 using GoLoginTools.Services.GoLogin.Dtos.DeleteProfile;
+using GoLoginTools.Services.GoLogin.Dtos.GetNewFingerprint;
 using GoLoginTools.Services.GoLogin.Dtos.GetProfilesPaging;
 using GoLoginTools.Services.GoLogin.Dtos.SetProxyToProfileDtos;
+using GoLoginTools.Services.GoLogin.Dtos.UpdateNewFingerprint;
+using GoLoginTools.Services.GoLogin.Dtos.UpdateProfile;
 using Newtonsoft.Json;
 
 namespace GoLoginTools.Services
@@ -29,13 +32,13 @@ namespace GoLoginTools.Services
         }
 
 
-        public async Task<CreateNewProfileResponse> CreateNewProfileAsync(CreateNewProfileRequest profileDto)
+        public async Task<CreateNewProfileResponse> CreateNewProfileAsync(CreateNewProfileRequest request)
         {
             CreateNewProfileResponse response = new();
 			HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://api.gologin.com");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _goLoginAccessToken);
-            StringContent content = new(JsonConvert.SerializeObject(profileDto), Encoding.UTF8, "application/json");
+            StringContent content = new(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
 
             var httpResponse = await client.PostAsync("/browser", content);
             
@@ -107,5 +110,86 @@ namespace GoLoginTools.Services
 
             return null;
         }
+        public async Task<GetNewFingerprintResponse> GetNewFingerprintAsync(GetNewFingerprintRequest request)
+        {
+            GetNewFingerprintResponse responseContent = new();
+
+			using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_baseUrl);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _goLoginAccessToken);
+
+                string requestParams = $"{nameof(request.os)}={request.os}&{nameof(request.resolution)}={request.resolution}&{nameof(request.isM1)}={request.isM1}";
+                var httpMessage = await client.GetAsync($"/browser/fingerprint?{requestParams}");
+                var httpContent = await httpMessage.Content.ReadAsStringAsync();
+
+                try
+                {
+					responseContent = JsonConvert.DeserializeObject<GetNewFingerprintResponse>(httpContent);
+					return responseContent;
+				}
+                catch(Exception ex)
+                {
+                    responseContent.statusCode = 500;
+                    responseContent.message = "Deserializing response failure!!";
+                }
+
+                return responseContent;
+			}
+
+		}
+        public async Task<UpdateNewFingerprintResponse> UpdateNewFingerprintAsync(UpdateNewFingerprintRequest request)
+        {
+            UpdateNewFingerprintResponse response = new();
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_baseUrl);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _goLoginAccessToken);
+                StringContent requestContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+                var httpMessage = await client.PatchAsync("/browser/fingerprints", requestContent);
+                var responseContent = await httpMessage.Content.ReadAsStringAsync();
+
+                try
+                {
+					response = JsonConvert.DeserializeObject<UpdateNewFingerprintResponse>(responseContent);
+                    return response;
+				}
+                catch(Exception ex)
+                {
+                    response.statusCode = 500;
+                    response.message = ex.Message;
+                }
+                return response;
+			}
+
+		}
+        public async Task<UpdateProfileResponse> UpdateProfileAsync(UpdateProfileRequest request)
+        {
+			UpdateProfileResponse response = new();
+
+			using (HttpClient client = new HttpClient())
+			{
+				client.BaseAddress = new Uri(_baseUrl);
+				client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _goLoginAccessToken);
+				StringContent requestContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+				var httpMessage = await client.PutAsync($"/browser/{request.id}", requestContent);
+				var responseContent = await httpMessage.Content.ReadAsStringAsync();
+
+				try
+				{
+					response = JsonConvert.DeserializeObject<UpdateProfileResponse>(responseContent);
+					return response;
+				}
+				catch (Exception ex)
+				{
+					response.statusCode = 500;
+					response.message = ex.Message;
+				}
+				return response;
+			}
+		}
     }
 }

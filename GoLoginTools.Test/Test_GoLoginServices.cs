@@ -1,5 +1,7 @@
 using GoLoginTools.Services;
+using GoLoginTools.Services.GoLogin.Dtos.GetNewFingerprint;
 using GoLoginTools.Services.GoLogin.Dtos.GetProfilesPaging;
+using GoLoginTools.Services.GoLogin.Dtos.UpdateNewFingerprint;
 
 namespace GoLoginTools.Test
 {
@@ -7,6 +9,7 @@ namespace GoLoginTools.Test
 	public class Test_GoLoginServices
 	{
 		private string _accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NThhOTdlMDgwNDAxMjZkYzAxNDdiNmEiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NThhOWI5MGY0Y2QzYWNhOWZhNTY2NjkifQ.VKCW2u0iGCrVlDjlGCv-b3kyHBKAG5s_wOjVjM3jH6A";
+		private string _browserId = "658c02232f3c3f2c07cde9dd";
 		[TestMethod]
 		public void Test_CreateProfile()
 		{
@@ -19,6 +22,26 @@ namespace GoLoginTools.Test
 		{
 			GoLoginAPI api = new GoLoginAPI(_accessToken);
 			var result = api.GetProfilesPagingAsync(new GetProfilesPagingRequest() { Limit = 10, Page = 1 }).GetAwaiter().GetResult();
+		}
+
+		[TestMethod]
+		public void Test_GetNewFingerprint()
+		{
+			GoLoginAPI api = new GoLoginAPI(_accessToken);
+			var requestObj = new GetNewFingerprintRequest();
+			requestObj.os = "win";
+			var result = api.GetNewFingerprintAsync(requestObj).Result;
+		}
+
+		[TestMethod]
+		public void Test_UpdateFingerprint()
+		{
+			GoLoginAPI api = new GoLoginAPI(_accessToken);
+			var requestObj = new UpdateNewFingerprintRequest();
+			requestObj.resolution = "1920x1080";
+			requestObj.language = "en-US";
+			requestObj.browserIds = new[] { _browserId };
+			var result = api.UpdateNewFingerprintAsync(requestObj).Result;
 		}
 	}
 }

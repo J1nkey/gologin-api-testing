@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using GoLoginTools.POCO.UIs;
 using GoLoginTools.Services;
+using GoLoginTools.Services.GoLogin.Dtos.GetProfilesPaging;
 using GoLoginTools.Utils;
 using Newtonsoft.Json;
 
@@ -13,6 +14,8 @@ namespace GoLoginTools.App
 
 		private object _lockProfile = new object();
 		private object _lockDatatable = new object();
+
+		private GoLoginAPI _glService;
 		public FrmMain()
 		{
 			InitializeComponent();
@@ -23,6 +26,7 @@ namespace GoLoginTools.App
 		private void LoadVariables()
 		{
 			tbGlToken.Text = ConfigurationService.ReadSetting(ConfigurationKeyCenter.GO_LOGIN_ACCESS_TOKEN);
+			_glService = new GoLoginAPI(ConfigurationService.ReadSetting(ConfigurationKeyCenter.GO_LOGIN_ACCESS_TOKEN));
 		}
 
 		private void LoadDataGridViewContent()
@@ -45,11 +49,18 @@ namespace GoLoginTools.App
 		{
 			try
 			{
-				var fileContent = LocalFileService
+				if(File.Exists(Environment.CurrentDirectory + FileStoragePathCenter.PROFILES_CONFIG_PATH))
+				{
+					var fileContent = LocalFileService
 								.readAllTextFile(
 								Environment.CurrentDirectory + FileStoragePathCenter.PROFILES_CONFIG_PATH);
-				var data = JsonConvert.DeserializeObject<List<ProfileDataTable>>(fileContent);
-				return data;
+					var data = JsonConvert.DeserializeObject<List<ProfileDataTable>>(fileContent);
+					return data;
+				}
+				else
+				{
+					var profiles = _glService.GetProfilesPagingAsync(new GetProfilesPagingRequest());
+				}
 			}
 			catch
 			{

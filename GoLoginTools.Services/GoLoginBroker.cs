@@ -9,6 +9,6 @@ namespace GoLoginTools.Services
 {
 	public static class GoLoginBroker
 	{
-		public static async Task<CreateNewProfileResponse> CreateNewProfile();
+		//public static async Task<CreateNewProfileResponse> CreateNewProfile();
 	}
 }
