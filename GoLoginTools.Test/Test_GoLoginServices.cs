@@ -8,7 +8,7 @@ namespace GoLoginTools.Test
 	[TestClass]
 	public class Test_GoLoginServices
 	{
-		private string _accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NThhOTdlMDgwNDAxMjZkYzAxNDdiNmEiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NThhOWI5MGY0Y2QzYWNhOWZhNTY2NjkifQ.VKCW2u0iGCrVlDjlGCv-b3kyHBKAG5s_wOjVjM3jH6A";
+		private string _accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTk1MjE1NTFlYjQyZmZjMjJkN2U5NzEiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTk1MjM2NTljMDQwNDMxYmI1MTYzYjEifQ.Gzth4UtyZd8B4ldKJsJtVdokd8FD_YbHRHRJRK7YL9A";
 		private string _browserId = "658c02232f3c3f2c07cde9dd";
 		[TestMethod]
 		public void Test_CreateProfile()

@@ -509,23 +509,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\P14S\\.nuget\\packages\\": {},
+    "C:\\Users\\catpi\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Services\\GoLoginTools.Services.csproj",
+      "projectUniqueName": "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.Services\\GoLoginTools.Services.csproj",
       "projectName": "GoLoginTools.Services",
-      "projectPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Services\\GoLoginTools.Services.csproj",
-      "packagesPath": "C:\\Users\\P14S\\.nuget\\packages\\",
-      "outputPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.Services\\obj\\",
+      "projectPath": "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.Services\\GoLoginTools.Services.csproj",
+      "packagesPath": "C:\\Users\\catpi\\.nuget\\packages\\",
+      "outputPath": "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\P14S\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\catpi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -540,8 +540,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj": {
-              "projectPath": "D:\\coding\\research\\GoLogin-simpletools\\GoLoginTools\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj"
+            "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj": {
+              "projectPath": "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj"
             }
           }
         }
@@ -589,7 +589,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
