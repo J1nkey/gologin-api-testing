@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using GoLoginTools.POCO.UIs;
 using GoLoginTools.Services;
+using GoLoginTools.Services.GoLogin.Dtos.DeleteProfile;
 using GoLoginTools.Services.GoLogin.Dtos.GetProfilesPaging;
 using GoLoginTools.Utils;
 using Newtonsoft.Json;
@@ -87,47 +88,52 @@ namespace GoLoginTools.App
             }
 
         }
-        private void RefreshList()
+        private async Task RefreshList()
         {
-            var current = GetDataFromLocal().GetAwaiter().GetResult();
+            var current = await GetDataFromLocal();
+
+            var newDataTable = ConvertToDataTable(current);
+            dgvProfiles.DataSource = newDataTable;
+            dgvProfiles.Refresh();
             //remove item if not found
-            for (var i = _profiles.Count - 1; i >= 0; i--)
-            {
-                if (!current.Any(x => x.Id.Equals(_profiles[i].Id)))
-                {
-                    lock (_lockProfile)
-                    {
-                        _profiles.RemoveAt(i);
-                    }
-                    lock (_lockDatatable)
-                    {
-                        _dgvDataSource.Rows.RemoveAt(i);
-                    }
-                }
-            }
-            //add new item
-            foreach (var newProfile in current)
-            {
-                if (!_profiles.Any(x => x.Id.Equals(newProfile.Id)))
-                {
-                    lock (_lockProfile)
-                    {
-                        _profiles.Add(newProfile);
-                    }
-                    var new_index = _profiles.IndexOf(newProfile);
-                    AddNewRow(newProfile, new_index);
-                }
-            }
-            //re-index
-            var index = 1;
-            foreach (DataGridViewRow row in dgvProfiles.Rows)
-            {
-                lock (_lockDatatable)
-                {
-                    _dgvDataSource.Rows[row.Index]["cl_Index"] = index++;
-                }
-            }
+            //for (var i = _profiles.Count - 1; i >= 0; i--)
+            //{
+            //    if (!current.Any(x => x.Id.Equals(_profiles[i].Id)))
+            //    {
+            //        lock (_lockProfile)
+            //        {
+            //            _profiles.RemoveAt(i);
+            //        }
+            //        lock (_lockDatatable)
+            //        {
+            //            _dgvDataSource.Rows.RemoveAt(i);
+            //        }
+            //    }
+            //}
+            ////add new item
+            //foreach (var newProfile in current)
+            //{
+            //    if (!_profiles.Any(x => x.Id.Equals(newProfile.Id)))
+            //    {
+            //        lock (_lockProfile)
+            //        {
+            //            _profiles.Add(newProfile);
+            //        }
+            //        var new_index = _profiles.IndexOf(newProfile);
+            //        AddNewRow(newProfile, new_index);
+            //    }
+            //}
+            ////re-index
+            //var index = 1;
+            //foreach (DataGridViewRow row in dgvProfiles.Rows)
+            //{
+            //    lock (_lockDatatable)
+            //    {
+            //        _dgvDataSource.Rows[row.Index]["cl_Index"] = index++;
+            //    }
+            //}
         }
+
 
         #region UI Events
         private void tbGlToken_TextChanged(object sender, EventArgs e)
@@ -144,11 +150,11 @@ namespace GoLoginTools.App
             }
         }
 
-        private void btnCreateProfile_Click(object sender, EventArgs e)
+        private async void btnCreateProfile_Click(object sender, EventArgs e)
         {
             var profileDialog = new FrmProfileManage(string.Empty);
             profileDialog.ShowDialog();
-            RefreshList();
+            await RefreshList();
         }
 
         private DataTable ConvertToDataTable(ICollection<ProfileDataTable> data)
@@ -168,6 +174,7 @@ namespace GoLoginTools.App
             table.Columns.Add("cl_OS", typeof(string));
             table.Columns.Add("cl_ProxyEnable", typeof(string));
             table.Columns.Add("cl_Proxy", typeof(string));
+            table.Columns.Add("cl_Progress", typeof(string));
             var index = 1;
 
             foreach (var item in data)
@@ -179,6 +186,7 @@ namespace GoLoginTools.App
                 row["cl_OS"] = item.OS;
                 row["cl_ProxyEnable"] = item.ProxyEnable;
                 row["cl_Proxy"] = item.ProxyHost + ":" + item.ProxyPort;
+                row["cl_Progress"] = "Ready to start!";
                 table.Rows.Add(row);
             }
 
@@ -194,16 +202,12 @@ namespace GoLoginTools.App
             row["cl_OS"] = data.OS;
             row["cl_ProxyEnable"] = data.ProxyEnable;
             row["cl_Proxy"] = data.ProxyHost + ":" + data.ProxyPort;
+            row["cl_Progress"] = "Ready to start!";
             lock (_dgvDataSource)
             {
                 _dgvDataSource.Rows.InsertAt(row, position);
             }
             return row;
-        }
-
-        private async void btnLoadProfiles_Click(object sender, EventArgs e)
-        {
-            await LoadDataGridViewContent();
         }
 
         private void dgvProfiles_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
@@ -226,7 +230,7 @@ namespace GoLoginTools.App
             {
                 e.Column.Width = 200;
                 e.Column.MinimumWidth = 125;
-                e.Column.HeaderText = "HTTP Proxy";
+                e.Column.HeaderText = "Name";
                 //e.Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 return;
             }
@@ -235,27 +239,62 @@ namespace GoLoginTools.App
                 e.Column.Width = 100;
                 e.Column.MinimumWidth = 90;
                 e.Column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                e.Column.HeaderText = "Proxy";
+                return;
+            }
+            if (e.Column.Name == "cl_Progress")
+            {
+                e.Column.HeaderText = "Progress";
                 return;
             }
         }
+
+        private void dgvProfiles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void btnInputEmail_Click(object sender, EventArgs e)
+        {
+            FrmInputManage frmInputManage = new FrmInputManage("email");
+            frmInputManage.Show();
+        }
+
+        private void btnInputProxy_Click(object sender, EventArgs e)
+        {
+            FrmInputManage frmInputManage = new FrmInputManage("proxy");
+            frmInputManage.Show();
+        }
         #endregion
 
+        #region Tool Strip Settings 
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void startAutoForwardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var userSelect = MessageBox.Show("Are you sure to delete this profile?", "Alert", MessageBoxButtons.OKCancel);
+            if (userSelect == DialogResult.OK)
+            {
+                // Handle get profile ID process
+                var selectedProfileId = dgvProfiles.SelectedRows[0].Cells["cl_Id"].Value.ToString();
+                await _glService.DeleteProfileAsync(new DeleteProfileRequest { ProfileId = selectedProfileId });
+                dgvProfiles.Rows.Remove(dgvProfiles.SelectedRows[0]);
+                await RefreshList();
+            }
+        }
+
+        private void modifyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var rowIndex = dgvProfiles.SelectedRows[0].Index;
             var profileId = dgvProfiles.Rows[rowIndex].Cells["cl_Id"].Value.ToString();
             FrmProfileManage frmManage = new FrmProfileManage(profileId);
             frmManage.Show();
         }
+        #endregion
 
-        private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            var userSelect = MessageBox.Show("Are you sure to delete this profile?", "Alert", MessageBoxButtons.OKCancel);
-            if (userSelect == DialogResult.OK)
-            {
-                //
-            }
-        }
+
     }
 }

@@ -2,6 +2,6 @@
 {
 	public class DeleteProfileRequest
 	{
-		public int ProfileId { get; set; }
+		public string ProfileId { get; set; }
 	}
 }

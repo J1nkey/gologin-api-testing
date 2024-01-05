@@ -38,7 +38,7 @@ namespace GoLoginTools.Services
             _goLoginAccessToken = newToken;
         }
 
-        public async Task<GetProfileByIdResponse> GetProfileById(GetProfileByIdRequest request)
+        public async Task<GetProfileByIdResponse> GetProfileByIdAsync(GetProfileByIdRequest request)
         {
             GetProfileByIdResponse response = new();
             using(HttpClient client = new())
@@ -121,7 +121,7 @@ namespace GoLoginTools.Services
 
                 response = JsonConvert.DeserializeObject<DeleteProfileResponse>(await httpResponseMessage.Content.ReadAsStringAsync());
 
-                if (response.statusCode == 204 || httpResponseMessage.IsSuccessStatusCode)
+                if (httpResponseMessage.IsSuccessStatusCode)
                     return response;
             }
 

@@ -23,21 +23,28 @@ namespace GoLoginTools.App
         private readonly bool _isSetting;
         public FrmProfileManage(string profileId)
         {
+            InitializeComponent();
+
             _selectedProfileId = profileId;
             _isSetting = string.IsNullOrEmpty(profileId) ? false : true;
             _glAPI = new GoLoginAPI(ConfigurationService.ReadSetting(ConfigurationKeyCenter.GO_LOGIN_ACCESS_TOKEN));
-            InitializeComponent();
         }
 
         private async void FrmProfileManage_Load(object sender, EventArgs e)
         {
-            if(_isSetting)
+            if (_isSetting)
             {
-                var profile = await _glAPI.GetProfileById(new GetProfileByIdRequest() { Id = _selectedProfileId });
+                var profile = await _glAPI.GetProfileByIdAsync(new GetProfileByIdRequest() { Id = _selectedProfileId });
+                tbName.Text = profile.name;
+                tbNotes.Text = profile.notes;
+                tbUserAgent.Text = profile.navigator.userAgent;
+                tbResolution.Text = profile.navigator.resolution;
+                tbPlatform.Text = profile.os;
+                cbbCanvasMode.Text = cbbCanvasMode.Items.IndexOf(profile)
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             ValidationResult isValidationPassed = ValidateFormData();
 
@@ -70,6 +77,11 @@ namespace GoLoginTools.App
 
                 request.proxy = proxy;
             }
+            else
+            {
+                request.proxyEnable = false;
+                request.proxy = new ProxyModel();
+            }
 
             request.storage = new StorageModel
             {
@@ -82,14 +94,30 @@ namespace GoLoginTools.App
             {
                 userAgent = tbUserAgent.Text.Trim(),
                 resolution = tbResolution.Text.Trim(),
+                platform = tbPlatform.Text.ToLower().Trim()
             };
             request.canvas = new CanvasModel
             {
-                mode = cbbCanvasMode.Text.Trim(),
+                mode = cbbCanvasMode.Text.ToLower().Trim(),
                 noise = int.Parse(tbCanvasNoise.Text.Trim())
             };
 
-            var result = _glAPI.CreateNewProfileAsync(request).GetAwaiter().GetResult();
+            var result = await _glAPI.CreateNewProfileAsync(request);
+            if(result != null)
+            {
+                if(result.statusCode < 300) // successful code
+                {
+                    MessageBox.Show("Create profile successfully!", "Notification", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    // Handle write log below
+                    MessageBox.Show("Create profile failure, please checking the logs in Log directory to see detail error!", "Alert!", MessageBoxButtons.OKCancel);
+                    return;
+                }
+            }
+            MessageBox.Show("Create profile failure!", "Alert!", MessageBoxButtons.OKCancel);
         }
 
         private ValidationResult ValidateFormData()
@@ -120,13 +148,13 @@ namespace GoLoginTools.App
                 }
             }
 
-            if (string.IsNullOrEmpty(tbUserAgent.Text))
-            {
-                result.IsSuccess = false;
-                result.Agent = "Port";
-                result.Message = "User agent must not null or empty";
-                return result;
-            }
+            //if (string.IsNullOrEmpty(tbUserAgent.Text))
+            //{
+            //    result.IsSuccess = false;
+            //    result.Agent = "Port";
+            //    result.Message = "User agent must not null or empty";
+            //    return result;
+            //}
 
             if (!int.TryParse(tbCanvasNoise.Text, out _))
             {

@@ -74,6 +74,8 @@
             cbHistorySaving = new CheckBox();
             cbEnableGServices = new CheckBox();
             btnSave = new Button();
+            lbPlatform = new Label();
+            tbPlatform = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -150,6 +152,7 @@
             tbUserAgent.Name = "tbUserAgent";
             tbUserAgent.Size = new Size(193, 27);
             tbUserAgent.TabIndex = 1;
+            tbUserAgent.Text = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.6045.33 Safari/537.36";
             // 
             // label3
             // 
@@ -290,6 +293,8 @@
             groupBox3.Controls.Add(cbbCanvasMode);
             groupBox3.Controls.Add(label11);
             groupBox3.Controls.Add(label10);
+            groupBox3.Controls.Add(tbPlatform);
+            groupBox3.Controls.Add(lbPlatform);
             groupBox3.Controls.Add(tbResolution);
             groupBox3.Controls.Add(label9);
             groupBox3.Controls.Add(tbUserAgent);
@@ -423,7 +428,7 @@
             // 
             // tbCanvasNoise
             // 
-            tbCanvasNoise.Location = new Point(342, 114);
+            tbCanvasNoise.Location = new Point(341, 151);
             tbCanvasNoise.Name = "tbCanvasNoise";
             tbCanvasNoise.Size = new Size(193, 27);
             tbCanvasNoise.TabIndex = 1;
@@ -433,7 +438,7 @@
             // 
             cbbCanvasMode.FormattingEnabled = true;
             cbbCanvasMode.Items.AddRange(new object[] { "Block", "Noise", "Off" });
-            cbbCanvasMode.Location = new Point(342, 82);
+            cbbCanvasMode.Location = new Point(341, 119);
             cbbCanvasMode.Name = "cbbCanvasMode";
             cbbCanvasMode.Size = new Size(192, 28);
             cbbCanvasMode.TabIndex = 1;
@@ -441,7 +446,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(239, 117);
+            label11.Location = new Point(239, 154);
             label11.Name = "label11";
             label11.Size = new Size(97, 20);
             label11.TabIndex = 0;
@@ -450,7 +455,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(239, 86);
+            label10.Location = new Point(239, 122);
             label10.Name = "label10";
             label10.Size = new Size(98, 20);
             label10.TabIndex = 0;
@@ -543,6 +548,23 @@
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
+            // lbPlatform
+            // 
+            lbPlatform.AutoSize = true;
+            lbPlatform.Location = new Point(239, 89);
+            lbPlatform.Name = "lbPlatform";
+            lbPlatform.Size = new Size(66, 20);
+            lbPlatform.TabIndex = 0;
+            lbPlatform.Text = "Platform";
+            // 
+            // tbPlatform
+            // 
+            tbPlatform.Location = new Point(340, 86);
+            tbPlatform.Name = "tbPlatform";
+            tbPlatform.Size = new Size(193, 27);
+            tbPlatform.TabIndex = 1;
+            tbPlatform.Text = "win";
+            // 
             // FrmProfileManage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -614,5 +636,7 @@
         private Label label15;
         private ComboBox cbbCanvasMode;
         private CheckBox cbPasswordSaving;
+        private TextBox tbPlatform;
+        private Label lbPlatform;
     }
 }
