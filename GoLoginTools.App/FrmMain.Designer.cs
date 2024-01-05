@@ -77,6 +77,7 @@
             dgvProfiles.ReadOnly = true;
             dgvProfiles.RowHeadersWidth = 51;
             dgvProfiles.RowTemplate.Height = 29;
+            dgvProfiles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProfiles.Size = new Size(1038, 300);
             dgvProfiles.TabIndex = 1;
             dgvProfiles.ColumnAdded += dgvProfiles_ColumnAdded;
@@ -113,19 +114,19 @@
             contextMenuStripProfile.ImageScalingSize = new Size(20, 20);
             contextMenuStripProfile.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem, deleteToolStripMenuItem1 });
             contextMenuStripProfile.Name = "contextMenuStripProfile";
-            contextMenuStripProfile.Size = new Size(211, 80);
+            contextMenuStripProfile.Size = new Size(126, 52);
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(210, 24);
+            deleteToolStripMenuItem.Size = new Size(125, 24);
             deleteToolStripMenuItem.Text = "Modify";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem1
             // 
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(210, 24);
+            deleteToolStripMenuItem1.Size = new Size(125, 24);
             deleteToolStripMenuItem1.Text = "Delete";
             deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 

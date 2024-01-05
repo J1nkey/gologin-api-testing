@@ -20,6 +20,7 @@ namespace GoLoginTools.App
         {
             InitializeComponent();
             LoadVariables();
+            LoadDataGridViewContent().ConfigureAwait(false);
         }
 
         private void LoadVariables()
@@ -145,7 +146,7 @@ namespace GoLoginTools.App
 
         private void btnCreateProfile_Click(object sender, EventArgs e)
         {
-            var profileDialog = new FrmProfileManage();
+            var profileDialog = new FrmProfileManage(string.Empty);
             profileDialog.ShowDialog();
             RefreshList();
         }
@@ -251,7 +252,7 @@ namespace GoLoginTools.App
         private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             var userSelect = MessageBox.Show("Are you sure to delete this profile?", "Alert", MessageBoxButtons.OKCancel);
-            if(userSelect == DialogResult.OK)
+            if (userSelect == DialogResult.OK)
             {
                 //
             }
