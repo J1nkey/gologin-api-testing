@@ -165,6 +165,9 @@
             "projectReferences": {
               "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj": {
                 "projectPath": "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj"
+              },
+              "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.Utils\\GoLoginTools.Utils.csproj": {
+                "projectPath": "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.Utils\\GoLoginTools.Utils.csproj"
               }
             }
           }
@@ -243,7 +246,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj": {
+                "projectPath": "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

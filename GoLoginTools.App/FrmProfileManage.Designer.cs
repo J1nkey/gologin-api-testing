@@ -62,10 +62,18 @@
             cbWebRtcFillBaseIp = new CheckBox();
             cbWebRtcIpMasking = new CheckBox();
             cbWebRtcCustomize = new CheckBox();
+            tbWebGLVendor = new TextBox();
+            tbWebGLRenderer = new TextBox();
+            label17 = new Label();
             tbCanvasNoise = new TextBox();
+            label16 = new Label();
+            cbbWebGLMode = new ComboBox();
             cbbCanvasMode = new ComboBox();
+            label18 = new Label();
             label11 = new Label();
             label10 = new Label();
+            tbPlatform = new TextBox();
+            lbPlatform = new Label();
             tbResolution = new TextBox();
             label9 = new Label();
             cbPasswordSaving = new CheckBox();
@@ -74,8 +82,6 @@
             cbHistorySaving = new CheckBox();
             cbEnableGServices = new CheckBox();
             btnSave = new Button();
-            lbPlatform = new Label();
-            tbPlatform = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -157,7 +163,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(239, 26);
+            label3.Location = new Point(217, 26);
             label3.Name = "label3";
             label3.Size = new Size(82, 20);
             label3.TabIndex = 0;
@@ -196,7 +202,7 @@
             // cbbProxyMode
             // 
             cbbProxyMode.FormattingEnabled = true;
-            cbbProxyMode.Items.AddRange(new object[] { "None", "HTTP,", "SOCKS" });
+            cbbProxyMode.Items.AddRange(new object[] { "NONE", "HTTP", "SOCKS" });
             cbbProxyMode.Location = new Point(293, 23);
             cbbProxyMode.Name = "cbbProxyMode";
             cbbProxyMode.Size = new Size(203, 28);
@@ -289,8 +295,14 @@
             // groupBox3
             // 
             groupBox3.Controls.Add(groupBox4);
+            groupBox3.Controls.Add(tbWebGLVendor);
+            groupBox3.Controls.Add(tbWebGLRenderer);
+            groupBox3.Controls.Add(label17);
             groupBox3.Controls.Add(tbCanvasNoise);
+            groupBox3.Controls.Add(label16);
+            groupBox3.Controls.Add(cbbWebGLMode);
             groupBox3.Controls.Add(cbbCanvasMode);
+            groupBox3.Controls.Add(label18);
             groupBox3.Controls.Add(label11);
             groupBox3.Controls.Add(label10);
             groupBox3.Controls.Add(tbPlatform);
@@ -306,7 +318,7 @@
             groupBox3.Controls.Add(cbEnableGServices);
             groupBox3.Location = new Point(12, 219);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(848, 261);
+            groupBox3.Size = new Size(857, 286);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Other";
@@ -325,7 +337,7 @@
             groupBox4.Controls.Add(cbWebRtcCustomize);
             groupBox4.Location = new Point(557, 26);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(285, 227);
+            groupBox4.Size = new Size(291, 227);
             groupBox4.TabIndex = 2;
             groupBox4.TabStop = false;
             groupBox4.Text = "WebRTC";
@@ -354,7 +366,7 @@
             // cbbWebRtcMode
             // 
             cbbWebRtcMode.FormattingEnabled = true;
-            cbbWebRtcMode.Items.AddRange(new object[] { "Alerted", "Disabled", "Real,", "Public" });
+            cbbWebRtcMode.Items.AddRange(new object[] { "Alerted", "Disabled", "Real", "Public" });
             cbbWebRtcMode.Location = new Point(60, 52);
             cbbWebRtcMode.Name = "cbbWebRtcMode";
             cbbWebRtcMode.Size = new Size(219, 28);
@@ -426,6 +438,32 @@
             cbWebRtcCustomize.Text = "Customize";
             cbWebRtcCustomize.UseVisualStyleBackColor = true;
             // 
+            // tbWebGLVendor
+            // 
+            tbWebGLVendor.Location = new Point(342, 217);
+            tbWebGLVendor.Name = "tbWebGLVendor";
+            tbWebGLVendor.Size = new Size(193, 27);
+            tbWebGLVendor.TabIndex = 1;
+            tbWebGLVendor.Text = "0";
+            // 
+            // tbWebGLRenderer
+            // 
+            tbWebGLRenderer.Location = new Point(342, 184);
+            tbWebGLRenderer.Name = "tbWebGLRenderer";
+            tbWebGLRenderer.Size = new Size(193, 27);
+            tbWebGLRenderer.TabIndex = 1;
+            tbWebGLRenderer.Text = "0";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(217, 220);
+            label17.Name = "label17";
+            label17.Size = new Size(107, 20);
+            label17.TabIndex = 0;
+            label17.Text = "WebGL Vendor";
+            label17.Click += labelWebGlGenerateRandom_Click;
+            // 
             // tbCanvasNoise
             // 
             tbCanvasNoise.Location = new Point(341, 151);
@@ -433,6 +471,25 @@
             tbCanvasNoise.Size = new Size(193, 27);
             tbCanvasNoise.TabIndex = 1;
             tbCanvasNoise.Text = "0";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(217, 187);
+            label16.Name = "label16";
+            label16.Size = new Size(120, 20);
+            label16.TabIndex = 0;
+            label16.Text = "WebGL Renderer";
+            label16.Click += labelWebGlGenerateRandom_Click;
+            // 
+            // cbbWebGLMode
+            // 
+            cbbWebGLMode.FormattingEnabled = true;
+            cbbWebGLMode.Items.AddRange(new object[] { "mask", "off" });
+            cbbWebGLMode.Location = new Point(343, 250);
+            cbbWebGLMode.Name = "cbbWebGLMode";
+            cbbWebGLMode.Size = new Size(192, 28);
+            cbbWebGLMode.TabIndex = 1;
             // 
             // cbbCanvasMode
             // 
@@ -443,10 +500,19 @@
             cbbCanvasMode.Size = new Size(192, 28);
             cbbCanvasMode.TabIndex = 1;
             // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(219, 253);
+            label18.Name = "label18";
+            label18.Size = new Size(99, 20);
+            label18.TabIndex = 0;
+            label18.Text = "WebGL Mode";
+            // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(239, 154);
+            label11.Location = new Point(217, 154);
             label11.Name = "label11";
             label11.Size = new Size(97, 20);
             label11.TabIndex = 0;
@@ -455,11 +521,28 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(239, 122);
+            label10.Location = new Point(217, 122);
             label10.Name = "label10";
             label10.Size = new Size(98, 20);
             label10.TabIndex = 0;
             label10.Text = "Canvas Mode";
+            // 
+            // tbPlatform
+            // 
+            tbPlatform.Location = new Point(340, 86);
+            tbPlatform.Name = "tbPlatform";
+            tbPlatform.Size = new Size(193, 27);
+            tbPlatform.TabIndex = 1;
+            tbPlatform.Text = "win";
+            // 
+            // lbPlatform
+            // 
+            lbPlatform.AutoSize = true;
+            lbPlatform.Location = new Point(217, 89);
+            lbPlatform.Name = "lbPlatform";
+            lbPlatform.Size = new Size(66, 20);
+            lbPlatform.TabIndex = 0;
+            lbPlatform.Text = "Platform";
             // 
             // tbResolution
             // 
@@ -472,7 +555,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(239, 56);
+            label9.Location = new Point(217, 56);
             label9.Name = "label9";
             label9.Size = new Size(79, 20);
             label9.TabIndex = 0;
@@ -540,7 +623,7 @@
             // 
             btnSave.BackColor = Color.LimeGreen;
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(751, 486);
+            btnSave.Location = new Point(760, 511);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(109, 52);
             btnSave.TabIndex = 3;
@@ -548,28 +631,11 @@
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
-            // lbPlatform
-            // 
-            lbPlatform.AutoSize = true;
-            lbPlatform.Location = new Point(239, 89);
-            lbPlatform.Name = "lbPlatform";
-            lbPlatform.Size = new Size(66, 20);
-            lbPlatform.TabIndex = 0;
-            lbPlatform.Text = "Platform";
-            // 
-            // tbPlatform
-            // 
-            tbPlatform.Location = new Point(340, 86);
-            tbPlatform.Name = "tbPlatform";
-            tbPlatform.Size = new Size(193, 27);
-            tbPlatform.TabIndex = 1;
-            tbPlatform.Text = "win";
-            // 
             // FrmProfileManage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(868, 545);
+            ClientSize = new Size(877, 575);
             Controls.Add(btnSave);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -638,5 +704,11 @@
         private CheckBox cbPasswordSaving;
         private TextBox tbPlatform;
         private Label lbPlatform;
+        private TextBox tbWebGLVendor;
+        private TextBox tbWebGLRenderer;
+        private Label label17;
+        private Label label16;
+        private ComboBox cbbWebGLMode;
+        private Label label18;
     }
 }

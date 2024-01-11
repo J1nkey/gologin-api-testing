@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GoLoginTools.POCO\GoLoginTools.POCO.csproj" />
+    <ProjectReference Include="..\GoLoginTools.Utils\GoLoginTools.Utils.csproj" />
   </ItemGroup>
 
 </Project>

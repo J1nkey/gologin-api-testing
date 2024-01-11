@@ -1,8 +1,7 @@
 ﻿using System.Data;
 using GoLoginTools.POCO.UIs;
 using GoLoginTools.Services;
-using GoLoginTools.Services.GoLogin.Dtos.DeleteProfile;
-using GoLoginTools.Services.GoLogin.Dtos.GetProfilesPaging;
+using GoLoginTools.Services.GoLogin.HttpModels;
 using GoLoginTools.Utils;
 using Newtonsoft.Json;
 
@@ -29,7 +28,6 @@ namespace GoLoginTools.App
             tbGlToken.Text = ConfigurationService.ReadSetting(ConfigurationKeyCenter.GO_LOGIN_ACCESS_TOKEN);
             _glService = new GoLoginAPI(ConfigurationService.ReadSetting(ConfigurationKeyCenter.GO_LOGIN_ACCESS_TOKEN));
         }
-
         private async Task LoadDataGridViewContent()
         {
             _profiles = await GetDataFromLocal();
@@ -40,7 +38,6 @@ namespace GoLoginTools.App
             dgvProfiles.DataSource = _dgvDataSource;
             dgvProfiles.Refresh();
         }
-
         private async Task<List<ProfileDataTable>> GetDataFromLocal()
         {
             try
@@ -90,10 +87,11 @@ namespace GoLoginTools.App
         }
         private async Task RefreshList()
         {
-            var current = await GetDataFromLocal();
+            _profiles = await GetDataFromLocal();
 
-            var newDataTable = ConvertToDataTable(current);
-            dgvProfiles.DataSource = newDataTable;
+            var newDataTable = ConvertToDataTable(_profiles);
+            _dgvDataSource = newDataTable;
+            dgvProfiles.DataSource = _dgvDataSource;
             dgvProfiles.Refresh();
             //remove item if not found
             //for (var i = _profiles.Count - 1; i >= 0; i--)
@@ -132,6 +130,26 @@ namespace GoLoginTools.App
             //        _dgvDataSource.Rows[row.Index]["cl_Index"] = index++;
             //    }
             //}
+        }
+        private void DgvUpdateProgress(ProfileDataTable profile, string message)
+        {
+            var rowIndex = _profiles.IndexOf(profile);
+            if (rowIndex < 0)
+            {
+                return;
+            }
+            lock (_lockDatatable)
+            {
+                try
+                {
+                    _dgvDataSource.Rows[rowIndex]["cl_Progress"] = !string.IsNullOrEmpty(message) ? message : "N/A";
+                }
+                catch
+                {
+                    //ignored
+                }
+            }
+
         }
 
 
@@ -267,10 +285,13 @@ namespace GoLoginTools.App
         #endregion
 
         #region Tool Strip Settings 
-
         private void startAutoForwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var profileId = dgvProfiles.SelectedRows[0].Cells["cl_Id"].Value.ToString();
+            var profile = _profiles.Where(t => t.Id == profileId).FirstOrDefault();
+            var glAccessToken = ConfigurationService.ReadSetting(ConfigurationKeyCenter.GO_LOGIN_ACCESS_TOKEN).ToString();
+            string exeCommand = $"/C node {Environment.CurrentDirectory}/auto-scripts/run.js --token {glAccessToken} --profileId {profileId}";
+            Task.Run(() => CmdProcess.ExecuteCommand(exeCommand, profile, DgvUpdateProgress)).ConfigureAwait(false);
         }
 
         private async void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -286,12 +307,13 @@ namespace GoLoginTools.App
             }
         }
 
-        private void modifyToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void modifyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var rowIndex = dgvProfiles.SelectedRows[0].Index;
             var profileId = dgvProfiles.Rows[rowIndex].Cells["cl_Id"].Value.ToString();
             FrmProfileManage frmManage = new FrmProfileManage(profileId);
             frmManage.Show();
+            await RefreshList();
         }
         #endregion
 

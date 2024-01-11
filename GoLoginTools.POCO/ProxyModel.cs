@@ -2,7 +2,7 @@
 {
 	public class ProxyModel
 	{
-		public string mode { get; set; } = "http";
+        public string mode { get; set; } = "none";
         public string host { get; set; }
         public int port { get; set; }
         public bool isAuthenticateRequire { get; set; }

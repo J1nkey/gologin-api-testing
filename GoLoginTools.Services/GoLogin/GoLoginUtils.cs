@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GoLoginTools.POCO;
 using GoLoginTools.POCO.Enumerables;
-using GoLoginTools.Services.GoLogin.Dtos;
-using GoLoginTools.Services.GoLogin.Dtos.CreateNewProfile;
+using GoLoginTools.Services.GoLogin.HttpModels;
 
 namespace GoLoginTools.Services
 {

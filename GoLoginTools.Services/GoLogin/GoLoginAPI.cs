@@ -1,15 +1,7 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using GoLoginTools.POCO;
-using GoLoginTools.Services.GoLogin.Dtos.CreateNewProfile;
-using GoLoginTools.Services.GoLogin.Dtos.DeleteProfile;
-using GoLoginTools.Services.GoLogin.Dtos.GetNewFingerprint;
-using GoLoginTools.Services.GoLogin.Dtos.GetProfileById;
-using GoLoginTools.Services.GoLogin.Dtos.GetProfilesPaging;
-using GoLoginTools.Services.GoLogin.Dtos.SetProxyToProfileDtos;
-using GoLoginTools.Services.GoLogin.Dtos.UpdateNewFingerprint;
-using GoLoginTools.Services.GoLogin.Dtos.UpdateProfile;
+using GoLoginTools.Services.GoLogin.HttpModels;
 using Newtonsoft.Json;
 
 namespace GoLoginTools.Services
@@ -67,10 +59,14 @@ namespace GoLoginTools.Services
             if (httpResponse.IsSuccessStatusCode)
             {
                 var httpContent = await httpResponse.Content.ReadAsStringAsync();
+                response = JsonConvert.DeserializeObject<CreateNewProfileResponse>(httpContent);
                 return response;
             }
 
             var responseContent = await httpResponse.Content.ReadAsStringAsync();
+            //response = JsonConvert.DeserializeObject<CreateNewProfileResponse>(responseContent);
+            response.statusCode = Convert.ToInt32(httpResponse.StatusCode.ToString());
+            response.message = "There're some errors was happend when created profile, see the logs to know what are occured!";
             return response;
         }
         public async Task<GetProfilesPagingResponse> GetProfilesPagingAsync(GetProfilesPagingRequest request)

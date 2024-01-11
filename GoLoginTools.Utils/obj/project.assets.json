@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "GoLoginTools.POCO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/GoLoginTools.POCO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GoLoginTools.POCO.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "GoLoginTools.POCO/1.0.0": {
+      "type": "project",
+      "path": "../GoLoginTools.POCO/GoLoginTools.POCO.csproj",
+      "msbuildProject": "../GoLoginTools.POCO/GoLoginTools.POCO.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "GoLoginTools.POCO >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\catpi\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj": {
+              "projectPath": "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

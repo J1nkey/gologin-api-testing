@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GoLoginTools.POCO\GoLoginTools.POCO.csproj" />
+  </ItemGroup>
+
 </Project>

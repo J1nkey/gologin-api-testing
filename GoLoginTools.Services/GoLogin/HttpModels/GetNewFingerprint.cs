@@ -1,9 +1,16 @@
 ﻿using GoLoginTools.POCO;
 
-namespace GoLoginTools.Services.GoLogin.Dtos.GetNewFingerprint
+namespace GoLoginTools.Services.GoLogin.HttpModels
 {
-	public class GetNewFingerprintResponse : BaseHttpResponse
-	{
+    public class GetNewFingerprintRequest
+    {
+        public string os { get; set; } = "win";
+        public string resolution { get; set; } = "1680x1050";
+        public bool isM1 { get; set; } = true;
+    }
+
+    public class GetNewFingerprintResponse : BaseHttpResponse
+    {
         public NavigatorModel navigator { get; set; }
         public PluginsModel plugins { get; set; }
         public CanvasModel canvas { get; set; }
@@ -15,5 +22,4 @@ namespace GoLoginTools.Services.GoLogin.Dtos.GetNewFingerprint
         public string[] fonts { get; set; }
         public bool autoLang { get; set; }
     }
-
 }

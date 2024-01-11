@@ -216,6 +216,19 @@
         "runtime": {
           "bin/placeholder/GoLoginTools.POCO.dll": {}
         }
+      },
+      "GoLoginTools.Utils/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GoLoginTools.POCO": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GoLoginTools.Utils.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GoLoginTools.Utils.dll": {}
+        }
       }
     }
   },
@@ -497,11 +510,17 @@
       "type": "project",
       "path": "../GoLoginTools.POCO/GoLoginTools.POCO.csproj",
       "msbuildProject": "../GoLoginTools.POCO/GoLoginTools.POCO.csproj"
+    },
+    "GoLoginTools.Utils/1.0.0": {
+      "type": "project",
+      "path": "../GoLoginTools.Utils/GoLoginTools.Utils.csproj",
+      "msbuildProject": "../GoLoginTools.Utils/GoLoginTools.Utils.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "GoLoginTools.POCO >= 1.0.0",
+      "GoLoginTools.Utils >= 1.0.0",
       "Newtonsoft.Json >= 13.0.3",
       "Selenium.Support >= 4.16.2",
       "Selenium.WebDriver >= 4.16.2",
@@ -542,6 +561,9 @@
           "projectReferences": {
             "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj": {
               "projectPath": "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.POCO\\GoLoginTools.POCO.csproj"
+            },
+            "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.Utils\\GoLoginTools.Utils.csproj": {
+              "projectPath": "E:\\Workspace\\Skyboss\\projects\\auto-forward\\ui-tool\\GoLoginTools.Utils\\GoLoginTools.Utils.csproj"
             }
           }
         }

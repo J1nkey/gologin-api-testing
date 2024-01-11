@@ -1,7 +1,5 @@
 using GoLoginTools.Services;
-using GoLoginTools.Services.GoLogin.Dtos.GetNewFingerprint;
-using GoLoginTools.Services.GoLogin.Dtos.GetProfilesPaging;
-using GoLoginTools.Services.GoLogin.Dtos.UpdateNewFingerprint;
+using GoLoginTools.Services.GoLogin.HttpModels;
 
 namespace GoLoginTools.Test
 {

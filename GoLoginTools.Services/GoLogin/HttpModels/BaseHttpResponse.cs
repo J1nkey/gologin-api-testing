@@ -1,5 +1,5 @@
 ﻿
-namespace GoLoginTools.Services.GoLogin.Dtos
+namespace GoLoginTools.Services.GoLogin.HttpModels
 {
 	public class BaseHttpResponse
 	{
